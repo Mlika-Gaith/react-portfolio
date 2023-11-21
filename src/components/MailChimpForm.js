@@ -19,5 +19,3 @@ export const MailChimpForm = () => {
     </>
   );
 };
-
-export default MailChimpForm;
