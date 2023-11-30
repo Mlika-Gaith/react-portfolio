@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img.svg";
+import emailjs from "@emailjs/browser";
 
 export const Contact = () => {
+  const form = useRef();
   const formInitialDetails = {
     firstName: "",
     lastName: "",
@@ -24,22 +26,28 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending ...");
-    let response = await fetch("http://localhost:5000/contact", {
-      headers: {
-        "Content-type": "Application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_EMAIL_SERVICE_ID,
+        process.env.REACT_APP_EMAIL_TEMPLATE_ID,
+        form.current,
+        process.env.REACT_APP_EMAIL_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setStatus({ success: true, message: "Message sent successfully" });
+        },
+        (error) => {
+          console.log(error.text);
+          setStatus({
+            success: false,
+            message: "Something went wrong, please try again later",
+          });
+        }
+      );
     setButtonText("Send");
-    let result = response.json();
     setFormDetails(formInitialDetails);
-    if (result.code === 200)
-      setStatus({ success: true, message: "Message sent successfully" });
-    else
-      setStatus({
-        success: false,
-        message: "Something went wrong, please try again letter",
-      });
   };
 
   return (
@@ -51,11 +59,12 @@ export const Contact = () => {
           </Col>
           <Col md={6}>
             <h2>Get In Touch</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={form}>
               <Row>
                 <Col sm={6} className="px-1">
                   <input
                     type="text"
+                    name="firstName"
                     value={formDetails.firstName}
                     placeholder="First Name"
                     onChange={(e) => onFormUpdate("firstName", e.target.value)}
@@ -64,6 +73,7 @@ export const Contact = () => {
                 <Col sm={6} className="px-1">
                   <input
                     type="text"
+                    name="lastName"
                     value={formDetails.lastName}
                     placeholder="Last Name"
                     onChange={(e) => onFormUpdate("lastName", e.target.value)}
@@ -74,14 +84,16 @@ export const Contact = () => {
                     type="email"
                     value={formDetails.email}
                     placeholder="Email Address"
+                    name="email"
                     onChange={(e) => onFormUpdate("email", e.target.value)}
                   />
                 </Col>
                 <Col sm={6} className="px-1">
                   <input
-                    type="email"
+                    type="text"
                     value={formDetails.phone}
                     placeholder="Phone No."
+                    name="phone"
                     onChange={(e) => onFormUpdate("phone", e.target.value)}
                   />
                 </Col>
@@ -90,6 +102,7 @@ export const Contact = () => {
                     row="6"
                     value={formDetails.message}
                     placeholder="Message"
+                    name="message"
                     onChange={(e) => onFormUpdate("message", e.target.value)}
                   ></textarea>
                   <button type="submit">
@@ -97,11 +110,12 @@ export const Contact = () => {
                   </button>
                 </Col>
                 {status.message && (
-                  <Col>
+                  <Col sm={10}>
                     <p
                       className={
                         status.success === false ? "danger" : "success"
                       }
+                      style={{ marginTop: 25 }}
                     >
                       {status.message}
                     </p>
