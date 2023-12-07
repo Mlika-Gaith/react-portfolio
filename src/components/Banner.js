@@ -1,68 +1,110 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
-import headerImg from "../assets/img/header-img.svg";
+import PlanetOne from "../assets/img/planet1.png";
+import PlanetTwo from "../assets/img/planet2.png";
+import PlanetThree from "../assets/img/planet3.png";
+import PlanetFour from "../assets/img/planet4.png";
+import { motion, useTime, useTransform } from "framer-motion";
 
 export const Banner = () => {
   // for animations
   const words = ["Engineer", "Web developer", "Mobile developer", "AI"];
-  const [loopNum, setLoopNum] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [text, setText] = useState("");
-  const [delta, setDelta] = useState(300 - Math.random() * 100);
-  const period = 2000;
-  useEffect(() => {
-    let ticker = setInterval(() => {
-      tick();
-    }, delta);
-    return () => {
-      clearInterval(ticker);
-    };
-  }, [text]);
-
-  const tick = () => {
-    let i = loopNum % words.length;
-    let fullText = words[i];
-    let updatedText = isDeleting
-      ? fullText.substring(0, text.length - 1)
-      : fullText.substring(0, text.length + 1);
-    setText(updatedText);
-    if (isDeleting) {
-      setDelta((prevDelta) => prevDelta / 2);
-    }
-    if (!isDeleting && updatedText === fullText) {
-      setIsDeleting(true);
-      setDelta(period);
-    } else if (isDeleting && updatedText === "") {
-      setIsDeleting(false);
-      setLoopNum(loopNum + 1);
-      setDelta(500);
-    }
+  const fadeLeft = {
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0 },
   };
+  const time = useTime();
+  const rotate = useTransform(
+    time,
+    [0, 10000], // For every 4 seconds...
+    [0, 180], // ...rotate 360deg
+    { clamp: false }
+  );
 
   return (
     <section className="banner" id="home">
       <Container>
-        <Row className="align-items-center">
-          <Col xs={12} md={6} xl={7}>
-            <span className="tagline">Welcome to my Portfolio</span>
-            <h1>
-              Hi i'm Ghaith <span className="wrap">{text}</span>
-              <p>
-                Dolor voluptate do in incididunt ipsum officia et qui sunt ea
-                Lorem aute eiusmod. Occaecat do ad non adipisicing et deserunt.
-                Voluptate nulla pariatur occaecat aliqua aute commodo eiusmod
-                qui tempor.
-              </p>
+        <div className="banner-container">
+          <div className="column-left">
+            <motion.span
+              className="tagline"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+            >
+              Welcome to my Portfolio
+            </motion.span>
+            <motion.h1
+              variants={fadeLeft}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 3 }}
+            >
+              Hi I'm Ghaith <span className="wrap"></span>
+              <motion.p>
+                Hi there! I'm a Polytechnique School graduate and a passionate
+                software engineer specializing in web development; Combining
+                rigorous education with hands-on experience. Let's build
+                something extraordinary together.
+              </motion.p>
               <button onClick={() => console.log("connect")}>
                 Let's connect <ArrowRightCircle size={25} />
               </button>
-            </h1>
-          </Col>
-          <Col xs={12} md={6} xl={5}>
-            <img src={headerImg} alt="Header Img" />
-          </Col>
-        </Row>
+            </motion.h1>
+          </div>
+
+          <div className="column-right">
+            <motion.img
+              src={PlanetOne}
+              alt="Planet One"
+              className="planet-img"
+              id="planetOne"
+              whileTap={{ scale: 0.9 }}
+              drag={true}
+              dragConstraints={{ left: 100, right: 250, top: 0, bottom: 50 }}
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
+              style={{ rotate }}
+            />
+            <motion.img
+              src={PlanetTwo}
+              alt="Planet Two"
+              className="planet-img"
+              id="planetTwo"
+              whileTap={{ scale: 0.7 }}
+              drag={true}
+              dragConstraints={{ left: 10, right: 50, top: 90, bottom: 150 }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
+              style={{ rotate }}
+            />
+            <motion.img
+              src={PlanetThree}
+              alt="Planet Three"
+              className="planet-img"
+              id="planetThree"
+              whileTap={{ scale: 0.8 }}
+              drag={true}
+              dragConstraints={{ left: 40, right: 250, top: 80, bottom: 150 }}
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0, transition: { duration: 2 } }}
+              style={{ rotate }}
+            />
+            <motion.img
+              src={PlanetFour}
+              alt="Planet Four"
+              className="planet-img"
+              id="planetFour"
+              whileTap={{ scale: 0.9 }}
+              drag={true}
+              dragConstraints={{ left: 90, right: 70, top: 200, bottom: 200 }}
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
+              style={{ rotate }}
+            />
+          </div>
+        </div>
       </Container>
     </section>
   );

@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img.png";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 
 export const Contact = () => {
   const form = useRef();
@@ -55,7 +56,23 @@ export const Contact = () => {
       <Container>
         <Row className="align-items-center">
           <Col md={6}>
-            <img src={contactImg} alt="contact us" />
+            <motion.img
+              src={contactImg}
+              alt="contact us"
+              whileTap={{ scale: 1.5 }}
+              animate={{
+                y: [0, -20, 0],
+                scaleY: [1, 0.9, 1],
+                scaleX: [1, 1.08, 1],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                repeatType: "mirror",
+              }}
+              drag={true}
+              dragConstraints={{ left: 100, right: 250, top: 0, bottom: 50 }}
+            />
           </Col>
           <Col md={6}>
             <h2>Get In Touch</h2>
