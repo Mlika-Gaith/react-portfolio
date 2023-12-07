@@ -94,91 +94,100 @@ p.danger {
 
 /****** Navbar Css ******/
 
-nav.navbar {
-  padding: 18px 0;
-  position: fixed;
-  width: 100%;
+.nav {
+  height: 80px;
+  margin-top: -80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  position: sticky;
   top: 0;
   z-index: 9999;
-  transition: 0.32s ease-in-out;
+  @media screen and (max-width: 960px) {
+    transition: 0.8 all ease;
+  }
 }
-
-nav.navbar.scrolled {
-  padding: 0px 0;
-  background-color: #121212;
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 9999;
+  width: 100%;
+  padding: 0 24px;
+  max-width: 1100px;
 }
-nav.navbar a.navbar-brand {
-  width: 9%;
-}
-nav.navbar .navbar-nav .nav-link.navbar-link {
-  font-weight: 400;
-  color: #fff !important;
-  letter-spacing: 0.8px;
-  padding: 0 25px;
-  font-size: 18px;
-  opacity: 0.75;
-}
-nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
-nav.navbar .navbar-nav a.nav-link.navbar-link.active {
-  opacity: 1;
-}
-span.navbar-text {
+.nav-logo {
+  color: #fff;
+  justify-self: flex-start;
+  cursor: pointer;
+  font-size: 1.8rem;
   display: flex;
   align-items: center;
+  margin-left: 24px;
+  font-weight: bold;
+  text-decoration: none;
 }
-.social-icon {
-  display: inline-block;
-  margin-left: 14px;
+.mobile-icon {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: -10px;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #fff;
+  }
 }
-.social-icon a {
-  width: 42px;
-  height: 42px;
-  background: rgba(217, 217, 217, 0.1);
-  display: inline-flex;
-  border-radius: 50%;
-  margin-right: 6px;
+.nav-menu {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  line-height: 1;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  list-style: none;
+  text-align: center;
+  margin-right: -22px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
-.social-icon a::before {
-  content: "";
-  width: 42px;
-  height: 42px;
-  position: absolute;
-  background-color: #ffffff;
-  border-radius: 50%;
-  transform: scale(0);
-  transition: 0.3s ease-in-out;
+.custom-nav-item {
+  height: 80px;
 }
-.social-icon a:hover::before {
-  transform: scale(1);
+.custom-nav-link {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+
+  &.active {
+    border-bottom: 3px solid #256bef;
+  }
 }
-.social-icon a img {
-  width: 40%;
-  z-index: 1;
-  transition: 0.3s ease-in-out;
+.custom-nav-btn {
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
-.social-icon a:hover img {
-  filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%)
-    hue-rotate(346deg) brightness(95%) contrast(86%);
-}
-.navbar-text button {
+.custom-nav-btn-link {
+  text-decoration: none;
   font-weight: 700;
   color: #fff;
   border: 1px solid #fff;
-  padding: 18px 34px;
+  padding: 25px 34px;
   font-size: 18px;
   margin-left: 18px;
   position: relative;
   background-color: transparent;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
-.navbar-text button span {
-  z-index: 1;
-}
-.navbar-text button::before {
+.custom-nav-btn-link::before {
   content: "";
   width: 0%;
   height: 100%;
@@ -189,61 +198,64 @@ span.navbar-text {
   z-index: -1;
   transition: 0.3s ease-in-out;
 }
-.navbar-text button:hover {
+.custom-nav-btn-link:hover {
   color: #121212;
 }
-.navbar-text button:hover::before {
+.custom-nav-btn-link:hover::before {
   content: "";
   width: 100%;
   height: 100%;
   position: absolute;
 }
-nav.navbar .navbar-toggler:active,
-nav.navbar .navbar-toggler:focus {
-  outline: none;
-  box-shadow: none;
-}
-nav.navbar .navbar-toggler-icon {
-  width: 24px;
-  height: 17px;
-  background-image: none;
-  position: relative;
-  border-bottom: 2px solid #fff;
-  transition: all 300ms linear;
-  top: -2px;
-}
-nav.navbar .navbar-toggler-icon:focus {
-  border-bottom: 2px solid #fff;
-}
-nav.navbar .navbar-toggler-icon:after,
-nav.navbar .navbar-toggler-icon:before {
-  width: 24px;
-  position: absolute;
-  height: 2px;
-  background-color: #fff;
+.toggle-menu-container {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: #262626;
+  display: grid;
+  align-items: center;
   top: 0;
   left: 0;
-  content: "";
-  z-index: 2;
-  transition: all 300ms linear;
+  transition: 0.3s ease-in-out;
 }
-nav.navbar .navbar-toggler-icon:after {
-  top: 8px;
+.toggle-menu-wrapper {
+  color: #fff;
 }
-nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
-  transform: rotate(45deg);
-  background-color: #fff;
-  height: 2px;
+.close-icon {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: transparent;
+  cursor: pointer;
+  font-size: 2rem;
+  outline: none;
 }
-nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
-  transform: translateY(8px) rotate(-45deg);
-  background-color: #fff;
-  height: 2px;
+.toggle-menu {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, 80px);
+  text-align: center;
+  @media screen and (max-width: 480px) {
+    grid-template-rows: repeat(6, 60px);
+  }
 }
-nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-  border-color: transparent;
+.toggle-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  list-style: none;
+  transition: 0.2s ease-in-out;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    color: #256bef;
+    transition: 0.2s ease-in-out;
+  }
 }
-
 /****** Banner Css ******/
 .banner {
   margin-top: 0;
@@ -342,7 +354,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin: 14px 0 75px 0;
 }
 .skill-slider {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -384,6 +396,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-radius: 50px;
   background-color: rgb(255 255 255 / 10%);
   overflow: hidden;
+  z-index: 1;
 }
 .project .nav.nav-pills .nav-item {
   width: 33.33333%;
@@ -391,7 +404,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .project .nav.nav-pills .nav-link {
   background-color: transparent;
   border-radius: 0;
-  padding: 17px 0;
+  padding: 38px 0;
   color: #fff;
   width: 100%;
   font-size: 17px;
@@ -401,6 +414,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   transition: 0.3s ease-in-out;
   text-align: center;
   z-index: 0;
+  overflow: hidden;
 }
 .project .nav.nav-pills .nav-link::before {
   content: "";
@@ -433,10 +447,17 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .proj-imgbx {
   position: relative;
-  border-radius: 30px;
+  margin-bottom: 25px;
   overflow: hidden;
-  margin-bottom: 24px;
+  height: 300px;
+  border-radius: 30px;
 }
+.proj-imgbx img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This property ensures that the image covers the entire container */
+}
+
 .proj-imgbx::before {
   content: "";
   background: linear-gradient(90.21deg, #aa367c -5.91%, #4a2fbd 111.58%);
