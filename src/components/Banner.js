@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import PlanetOne from "../assets/img/planet1.png";
@@ -9,7 +9,6 @@ import { motion, useTime, useTransform } from "framer-motion";
 
 export const Banner = () => {
   // for animations
-  const words = ["Engineer", "Web developer", "Mobile developer", "AI"];
   const fadeLeft = {
     hidden: { opacity: 0, x: -100 },
     visible: { opacity: 1, x: 0 },
@@ -31,7 +30,7 @@ export const Banner = () => {
               className="tagline"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 2 }}
+              transition={{ duration: 4 }}
             >
               Welcome to my Portfolio
             </motion.span>
@@ -39,7 +38,7 @@ export const Banner = () => {
               variants={fadeLeft}
               initial="hidden"
               animate="visible"
-              transition={{ duration: 3 }}
+              transition={{ duration: 1.5 }}
             >
               Hi I'm Ghaith <span className="wrap"></span>
               <motion.p>
@@ -62,7 +61,7 @@ export const Banner = () => {
               id="planetOne"
               whileTap={{ scale: 0.9 }}
               drag={true}
-              dragConstraints={{ left: 100, right: 250, top: 0, bottom: 50 }}
+              dragConstraints={{ left: 100, right: 150, top: 0, bottom: 250 }}
               initial={{ opacity: 0, y: -100 }}
               animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
               style={{ rotate }}
@@ -98,7 +97,7 @@ export const Banner = () => {
               id="planetFour"
               whileTap={{ scale: 0.9 }}
               drag={true}
-              dragConstraints={{ left: 90, right: 70, top: 200, bottom: 200 }}
+              dragConstraints={{ left: 10, right: 10, top: 0, bottom: 0 }}
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
               style={{ rotate }}
