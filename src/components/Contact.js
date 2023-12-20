@@ -85,6 +85,7 @@ export const Contact = () => {
                     value={formDetails.firstName}
                     placeholder="First Name"
                     onChange={(e) => onFormUpdate("firstName", e.target.value)}
+                    required
                   />
                 </Col>
                 <Col sm={6} className="px-1">
@@ -94,6 +95,7 @@ export const Contact = () => {
                     value={formDetails.lastName}
                     placeholder="Last Name"
                     onChange={(e) => onFormUpdate("lastName", e.target.value)}
+                    required
                   />
                 </Col>
                 <Col sm={6} className="px-1">
@@ -103,6 +105,7 @@ export const Contact = () => {
                     placeholder="Email Address"
                     name="email"
                     onChange={(e) => onFormUpdate("email", e.target.value)}
+                    required
                   />
                 </Col>
                 <Col sm={6} className="px-1">
@@ -112,6 +115,7 @@ export const Contact = () => {
                     placeholder="Phone No."
                     name="phone"
                     onChange={(e) => onFormUpdate("phone", e.target.value)}
+                    required
                   />
                 </Col>
                 <Col>
@@ -121,6 +125,7 @@ export const Contact = () => {
                     placeholder="Message"
                     name="message"
                     onChange={(e) => onFormUpdate("message", e.target.value)}
+                    required
                   ></textarea>
                   <button type="submit">
                     <span>{buttonText}</span>
