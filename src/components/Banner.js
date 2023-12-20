@@ -63,10 +63,11 @@ export const Banner = () => {
               id="planetOne"
               whileTap={{ scale: 0.9 }}
               drag={true}
-              dragConstraints={{ left: 100, right: 150, top: 0, bottom: 50 }}
+              dragConstraints={{ left: 10, right: 10, top: 0, bottom: 10 }}
               initial={{ opacity: 0, y: -100 }}
               animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
               style={{ rotate }}
+              o
             />
             <motion.img
               src={PlanetTwo}
@@ -75,7 +76,7 @@ export const Banner = () => {
               id="planetTwo"
               whileTap={{ scale: 0.7 }}
               drag={true}
-              dragConstraints={{ left: 80, right: 50, top: 90, bottom: 70 }}
+              dragConstraints={{ left: 10, right: 10, top: 10, bottom: 10 }}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
               style={{ rotate }}
@@ -87,7 +88,7 @@ export const Banner = () => {
               id="planetThree"
               whileTap={{ scale: 0.8 }}
               drag={true}
-              dragConstraints={{ left: 40, right: 250, top: 80, bottom: 60 }}
+              dragConstraints={{ left: 10, right: 10, top: 10, bottom: 30 }}
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0, transition: { duration: 2 } }}
               style={{ rotate }}
@@ -99,7 +100,7 @@ export const Banner = () => {
               id="planetFour"
               whileTap={{ scale: 0.9 }}
               drag={true}
-              dragConstraints={{ left: 10, right: 10, top: 180, bottom: 0 }}
+              dragConstraints={{ left: 10, right: 10, top: 10, bottom: 0 }}
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
               style={{ rotate }}
