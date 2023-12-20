@@ -21,6 +21,8 @@ export const Banner = () => {
     { clamp: false }
   );
 
+  console.log(window.screen.height)
+
   return (
     <section className="banner" id="home">
       <Container>
