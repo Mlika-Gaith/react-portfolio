@@ -264,10 +264,7 @@ p.danger {
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
-  @media screen and (max-width: 1400px) {
-    padding: 70px 0 50px 0;
-  }
+
 }
 .banner .tagline {
   font-weight: 700;
@@ -275,7 +272,7 @@ p.danger {
   padding: 8px 10px;
   background: linear-gradient(to right, #4e54c8, #8f94fb);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 16px;
   display: inline-block;
 }
@@ -287,8 +284,7 @@ p.danger {
   margin-bottom: 20px;
   display: block;
   @media screen and (max-width: 768px) {
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 50px;
     letter-spacing: 0.6px;
   }
 }
@@ -300,9 +296,6 @@ p.danger {
   text-align: justify;
   width: 96%;
   @media screen and (max-width: 768px) {
-    font-size: 15px;
-    letter-spacing: 0.6px;
-    line-height: 1.2rem;
     margin-top: 20px;
   }
 }
@@ -653,6 +646,7 @@ p.danger {
 @media screen and (max-width: 991px) {
   .new-email-bx{
     width: 320px;
+
   }
   .new-email-bx button{
     width: 180px;
@@ -670,6 +664,7 @@ p.danger {
   left: -1px;
   bottom: -1px;
   right: -1px;
+
 }
 .new-email-bx::after {
   content: "";
@@ -681,6 +676,7 @@ p.danger {
   left: 0;
   bottom: 0;
   right: 0;
+
 }
 .new-email-bx input {
   width: 100%;
@@ -703,7 +699,9 @@ p.danger {
 @media screen and (max-width:480px){
   .newsletter-bx{
     padding: 45px 25px;
+    background-color: red;
     margin-top: -150px;
+
   }
   .newsletter-bx h3{
     font-size: 20px;
@@ -713,7 +711,7 @@ p.danger {
     width:50%;
   }
   .new-email-bx button{
-    width: 100px;
+    width: 80px;
     display:flex;
     justify-content: center;
     align-self: start;
@@ -782,195 +780,7 @@ p.danger {
   filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%)
     hue-rotate(346deg) brightness(95%) contrast(86%);
 }
-/****** Framer Motion ******/
-/* Default styles for banner-container */
-.banner-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-  max-width: 1400px;
-  max-height: 700px;
-  /* Adjusted padding for demonstration; you may need to refine this based on your design */
-  padding: 1rem calc((100vh - 1400px) / 2);
-}
 
-.column-left {
-  display: flex;
-  color: #fff;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 5rem 2rem;
-}
-
-.column-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-/* General styles for planet images and columns */
-.planet-img {
-  position: absolute;
-  width: 220px;
-  height: 220px;
-}
-
-
-
-/* Adjust planet positions for different breakpoints */
-
-#planetOne {
-  top: 5px;
-  left: 270px;
-}
-
-#planetTwo {
-  bottom: 150px;
-  right: 10px;
-}
-
-#planetThree {
-  top: 20px;
-  left: 40px;
-}
-
-#planetFour {
-  bottom: 150px;
-  left: 80px;
-}
-
-/* Media Query for screens <= 1024px */
-
-@media screen and (max-width: 1024px) {
-
-  .banner-container {
-    grid-template-columns: 1fr;
-    padding: 1rem; /* Adjust padding as needed for this breakpoint */
-  }
-
-  .column-left {
-    padding: 1rem 1rem; /* Adjust padding as needed for this breakpoint */
-    order:2;
-  }
-
-  .column-right {
-    order: 1; /* Set the order to 1 so it appears before .column-left */
-    padding: 5rem 2rem;
-  }
-
-  .planet-img {
-    width: 150px;
-    height: 150px;
-  }
-  #planetOne {
-    top: 6px;
-    right: 10px;
-  }
-
-  #planetTwo {
-    bottom: -60px;
-    right: 60px;
-  }
-
-  #planetThree {
-    top: 20px;
-    left: 80px;
-  }
-
-  #planetFour {
-    bottom: -80px;
-    left: 240px;
-  }
-
-}
-/* Media Query for screens <= 768px */
-
-@media screen and (max-width: 768px) {
-  .banner-container {
-    grid-template-columns: 1fr;
-    padding: 1rem; /* Adjust padding as needed for this breakpoint */
-  }
-
-  .column-left {
-    padding: 3rem 1rem; /* Adjust padding as needed for this breakpoint */
-  }
-
-  .column-right {
-    order: 1; /* Set the order to 1 so it appears before .column-left */
-    padding: 5rem 2rem;
-  }
-
-  .planet-img {
-    width: 130px;
-    height: 130px;
-  }
-  #planetOne {
-    top: 5px;
-    right: 5px;
-  }
-
-  #planetTwo {
-    bottom: -60px;
-    right: 80px;
-  }
-
-  #planetThree {
-    top: 20px;
-    left: 20px;
-  }
-
-  #planetFour {
-    bottom: -60px;
-    left: 160px;
-  }
-
-}
-
-
-/* Media Query for screens <= 480px */
-@media screen and (max-width: 480px) {
-  .banner {
-    margin-top: 5px;
-  }
-  .banner-container {
-    grid-template-columns: 1fr;
-    padding: 0.5rem;
-  }
-
-  /* Rearranging the order of columns for 480px */
-  .column-left {
-    order: 2; /* Set the order to 2 so it appears after .column-right */
-  }
-
-  .column-right {
-    order: 1; /* Set the order to 1 so it appears before .column-left */
-  }
-
-  /* Adjust planet image sizes for 480px */
-  .planet-img {
-    width: 100px;
-    height: 100px;
-  }
-  #planetOne {
-    left:150px;
-  }
-
-  #planetTwo {
-    bottom: -30px;
-    right: 40px;
-  }
-
-  #planetThree {
-    top: 5px;
-    left: 20px;
-  }
-
-  #planetFour {
-    bottom: -40px;
-    left: 50px;
-  }
-}
 
 
 

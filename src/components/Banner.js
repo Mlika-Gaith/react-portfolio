@@ -1,10 +1,7 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
-import PlanetOne from "../assets/img/planet1.png";
-import PlanetTwo from "../assets/img/planet2.png";
-import PlanetThree from "../assets/img/planet3.png";
-import PlanetFour from "../assets/img/planet4.png";
+import Planet from "../assets/img/planet.png";
 import { motion, useTime, useTransform } from "framer-motion";
 
 export const Banner = () => {
@@ -21,13 +18,13 @@ export const Banner = () => {
     { clamp: false }
   );
 
-  console.log(window.screen.height)
+  console.log(window.screen.width)
 
   return (
     <section className="banner" id="home">
       <Container>
-        <div className="banner-container">
-          <div className="column-left">
+        <Row className="align-items-center">
+          <Col xs={12} md={6} xl={7}>
             <motion.span
               className="tagline"
               initial={{ opacity: 0 }}
@@ -53,11 +50,11 @@ export const Banner = () => {
                 Let's connect <ArrowRightCircle size={25} />
               </button>
             </motion.h1>
-          </div>
+          </Col>
 
-          <div className="column-right">
+          <Col xs={12} md={6} xl={5} style={{overflow:"hidden"}}>
             <motion.img
-              src={PlanetOne}
+              src={Planet}
               alt="Planet One"
               className="planet-img"
               id="planetOne"
@@ -69,44 +66,8 @@ export const Banner = () => {
               style={{ rotate }}
               o
             />
-            <motion.img
-              src={PlanetTwo}
-              alt="Planet Two"
-              className="planet-img"
-              id="planetTwo"
-              whileTap={{ scale: 0.7 }}
-              drag={true}
-              dragConstraints={{ left: 10, right: 10, top: 10, bottom: 10 }}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
-              style={{ rotate }}
-            />
-            <motion.img
-              src={PlanetThree}
-              alt="Planet Three"
-              className="planet-img"
-              id="planetThree"
-              whileTap={{ scale: 0.8 }}
-              drag={true}
-              dragConstraints={{ left: 10, right: 10, top: 10, bottom: 30 }}
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0, transition: { duration: 2 } }}
-              style={{ rotate }}
-            />
-            <motion.img
-              src={PlanetFour}
-              alt="Planet Four"
-              className="planet-img"
-              id="planetFour"
-              whileTap={{ scale: 0.9 }}
-              drag={true}
-              dragConstraints={{ left: 10, right: 10, top: 10, bottom: 0 }}
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
-              style={{ rotate }}
-            />
-          </div>
-        </div>
+          </Col>
+        </Row>
       </Container>
     </section>
   );
